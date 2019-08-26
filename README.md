@@ -16,4 +16,4 @@ $ npm run start // to start the API
 ```
 
 
-NodeTransder V1.0
+NodeTransfer V1.0
