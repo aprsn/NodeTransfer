@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a *ngIf="loggedIn()" style="color: #fff;" class="navbar-brand" (click) = "route('')"><img class="logo-navbar" src="../../../assets/logo/NT_logo.png"></a>
+    <a *ngIf="!loggedIn()" style="color: #fff;" class="navbar-brand" [routerLink]="['/home']" ><img class="logo-navbar" src="../../../assets/logo/NT_logo.png"></a>
+
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarColor01"
+    aria-controls="navbarColor01"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    (click) = "ntNavbar.classList.toggle('show')"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div #ntNavbar class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <div class="navLinkHolder" *ngIf="loggedIn()">
+        <li class="nav-item ">
+          <a class="nav-link" (click) = "route('')" [class.active]="isActive(undefined)"
+            > <i class="fas fa-home"></i> Panel</a
+          >
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" (click) = "route('profile')" routerLinkActive="router-link-active" [class.active]="isActive('profile')"
+              ><i class="fas fa-user-shield"></i> Profile </a
+            >
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" (click) = "route('upload')" routerLinkActive="router-link-active" [class.active]="isActive('upload')"
+              ><i class="fas fa-cloud-upload-alt"></i> Upload </a
+            >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click) = "route('search')" routerLinkActive="router-link-active" [class.active]="isActive('search')"
+            ><i class="fas fa-search"></i> Search </a
+          >
+      </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="logOut()"> <i class="fas fa-sign-out-alt"></i> Logout </a>
+        </li>
+      </div>
+    </ul>
+    <form *ngIf="!loggedIn()" class="form-inline my-2 my-lg-0">
+      <a class="node-button transparent sm" [routerLink]="['/auth/register']"
+        >Register</a
+      >
+      <a class="node-button default sm" [routerLink]="['/auth/login']">Login</a>
+    </form>
+  </div>
+</nav>

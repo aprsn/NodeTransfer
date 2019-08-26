@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row node-body">
+    <div class="col-md-12 searchPage">
+      <h3 class="col-title">Search User</h3>
+
+
+        <label for="exampleInputEmail1">Search:</label>
+        <input #search type="text" class="form-control mb-3" id="search" placeholder="Enter username here..." (keyup) = "searchUser(search.value)" autocomplete = "off">
+
+        <p-dataView [value]="result" [paginator]="true" [rows]="10">
+          <ng-template let-result pTemplate="listItem">
+              <div>
+                  <a (click) = "route(result.username)" >{{result.username}}</a>
+              </div>
+          </ng-template>
+      </p-dataView>
+
+    </div>
+  </div>
+
+  <div class="alert alert-success node-info" role="alert">
+      <h4 class="alert-heading">Search User</h4>
+      <p>You can search public profiles here. If a public user published a file, you can download or share it with someone else. People do not need to login for download public files.  </p>
+      <hr>
+      <p class="mb-0">Published file permissions may be change by publisher. You can not download or search private files. </p>
+    </div>
+
+
+</div>

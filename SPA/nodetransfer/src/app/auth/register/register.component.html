@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 centerDiv authDiv">
+      <img src="../../../assets/logo/NT.png" />
+
+      <div class="title">Register to NodeTransfer</div>
+
+      <form #registerForm="ngForm" class="authForm" (ngSubmit)="register()">
+        <div class="form-group">
+          <label for="username"><i class="fas fa-user"></i> Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+            placeholder="Choose an username"
+            [(ngModel)]="model.username"
+            autocomplete="off"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="email"><i class="fas fa-envelope"></i> Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            aria-describedby="emailHelp"
+            placeholder="Enter your email"
+            [(ngModel)]="model.email"
+            required
+          />
+          <small id="emailHelp" class="form-text text-muted"
+            >We'll never share your email with anyone else.</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="password"><i class="fas fa-key"></i> Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            placeholder="Password"
+            [(ngModel)]="model.password"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="repassword">Re-Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="repassword"
+            name="repassword"
+            placeholder="Re enter your Password"
+            [(ngModel)]="model.repassword"
+            required
+          />
+        </div>
+        <button
+          [disabled]="!registerForm.valid"
+          type="submit"
+          class="btn btn-primary"
+        >
+          Register
+        </button>
+      </form>
+      <div class="copy">&copy; 2019 NodeTransfer | All Rights Reserved</div>
+    </div>
+  </div>
+</div>

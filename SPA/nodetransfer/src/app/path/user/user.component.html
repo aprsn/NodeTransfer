@@ -1,0 +1,34 @@
+<h3 class="col-title user"><i class="fas fa-user"></i> {{username | uppercase}} <span> Public files </span> </h3>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+          <p-table [columns]="cols" [value]="userFiles" [paginator]="true" [rows]="10">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns">
+                        {{col.header}}
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                    <td *ngFor="let col of columns">
+                        <span *ngIf="col.field === 'size'">{{rowData[col.field]}}MB</span>
+                        <span *ngIf="col.field === 'filename' && col.header !== 'Action'">{{rowData[col.field]}}</span>
+                        <span *ngIf="col.field === 'date'">{{rowData[col.field] | date: 'dd/MM/yyyy hh:mm:ss'}}</span>
+                        <span *ngIf="col.field === 'filename' && col.header === 'Action'">
+                          <a class="actionLink download" [href]="'https://api.nodetransfer.com/get/publicFile/' + username + '/' + rowData[col.field]" target="_blank" download>  
+                            <i class="fas fa-2x fa-cloud-download-alt"></i>
+                          </a>
+                          <a class="actionLink download" (click) = "copyToClipboard(rowData['filename'])">  
+                                <i class="fas fa-link fa-2x"></i>
+                          </a>
+                        </span>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+    </div>
+  </div>
+</div>

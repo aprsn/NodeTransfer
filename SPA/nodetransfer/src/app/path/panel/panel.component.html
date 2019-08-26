@@ -1,0 +1,73 @@
+<div class="wait">
+  <p>Please wait, file is downloading...</p>
+</div>
+
+<div class="panel">
+  <div class="container">
+    <div class="row node-body">
+      <div class="col-md-6 infoCard">
+        <div class="card text-white bg-primary mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Account Size Limit</h5>
+            <p class="card-text">
+              {{userData?.sizeLimit}}MB
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 infoCard">
+        <div class="card text-white bg-primary mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Used Size</h5>
+            <p class="card-text">
+                {{userData?.usedSize}}MB
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <h3 class="col-title">My Files</h3>
+        <p-table [columns]="cols" [value]="userFiles" [paginator]="true" [rows]="10">
+          <ng-template pTemplate="header" let-columns>
+              <tr>
+                  <th *ngFor="let col of columns">
+                      {{col.header}}
+                  </th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr #fileCol>
+                  <td *ngFor="let col of columns;">
+                      <span *ngIf="col.field === 'size'">{{rowData[col.field]}}MB</span>
+                      <span *ngIf="col.field === 'filename' && col.header !== 'Action'">{{rowData[col.field]}}</span>
+                      <span *ngIf="col.field === 'date'">{{rowData[col.field] | date: 'dd/MM/yyyy hh:mm:ss'}}</span>
+                      <span *ngIf="col.field === 'filename' && col.header === 'Action'">
+                        <a class="actionLink download" (click) = "downloadFile(rowData['filename'])">  
+                          <i class="fas fa-2x fa-cloud-download-alt"></i>
+                        </a>
+                        <a #globalLink id="link_{{rowData['id']}}" *ngIf="rowData['public']" class="actionLink download" (click) = "copyToClipboard(rowData['filename'], globalLink)">  
+                            <i class="fas fa-link fa-2x"></i>
+                        </a>
+                        <a #globalLink id="link_{{rowData['id']}}" *ngIf="!rowData['public']" class="actionLink disabled" (click) = "copyToClipboard(rowData['filename'], globalLink)">  
+                            <i class="fas fa-link fa-2x"></i>
+                        </a>
+                        <a #globalElem data-priv = '0' (click) = "setFilePrivacy(rowData['filename'], globalElem.getAttribute('data-priv'), globalElem, rowData['id'] )" *ngIf="rowData['public']" class="actionLink public yes">
+                          <i class="fas fa-2x fa-globe-asia"></i>
+                        </a>
+                        <a #globalElem  data-priv = '1' (click) = "setFilePrivacy(rowData['filename'], globalElem.getAttribute('data-priv'), globalElem, rowData['id'])" *ngIf="!rowData['public']" class="actionLink public no">
+                            <i class="fas fa-2x fa-globe-asia"></i>
+                        </a>
+                        <a (click) = "deleteFile(rowData['filename'], fileCol)" class="actionLink delete">
+                          <i class="fas fa-2x fa-trash-alt"></i>
+                        </a>
+                      </span>
+                  </td>
+              </tr>
+          </ng-template>
+      </p-table>
+      </div>
+
+    </div>
+  </div>
+</div>

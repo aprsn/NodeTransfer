@@ -1,0 +1,31 @@
+<div class="meet-user" *ngIf="!loggedIn">
+  <div class="title">
+    <img src="../../../assets/logo/NT.png"> <br>
+    Welcome to NodeTransfer!</div>
+  <div class="content">
+    <span class="info"
+      >Node Transfer is a secure and simple file transfer system for companies
+      and personel users.
+    </span>
+    <hr>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <ul>
+            <li>Create public folders for everyone</li>
+            <li>
+              Share your private folders only with your team or friends that you
+              choose
+            </li>
+            <li>Set maximum size limits of your teammates</li>
+            <li>Manage your team's documents or your personel files</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <a class="node-button default" [routerLink]="['/auth/register']"  >Register Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

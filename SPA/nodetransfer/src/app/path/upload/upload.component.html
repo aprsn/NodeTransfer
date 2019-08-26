@@ -1,0 +1,28 @@
+<div class="wait">
+  <p>Please wait, file is uploading...</p>
+</div>
+<div class="uploadPanel">
+  <div class="container">
+    <div class="row node-body">
+      <div class="col-md-12">
+        <h3 class="col-title">Upload File</h3>
+        <p-fileUpload
+          name="myfile[]"
+          customUpload="true"
+          (uploadHandler)="myUploader($event)"
+        ></p-fileUpload>
+      </div>
+    </div>
+
+    <div class="alert alert-success node-info" role="alert">
+      <h4 class="alert-heading">Upload File</h4>
+      <p>
+        Uploaded files will be set as private by default. You can change it as public on your panel. Private account can publish files to everyone but can not be found on searches.
+      </p>
+      <hr />
+      <p class="mb-0">
+       After uploading a file, you will be redirected to your panel automatically. Large files can take more time to upload.
+      </p>
+    </div>
+  </div>
+</div>
