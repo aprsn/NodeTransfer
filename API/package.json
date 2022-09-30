@@ -10,7 +10,7 @@
   "author": "Alper San",
   "license": "ISC",
   "dependencies": {
-    "@hapi/joi": "^15.1.0",
+    "@hapi/joi": "^15.1.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "child_process": "^1.0.2",
